@@ -74,7 +74,7 @@ describe('formatGameScore', () => {
         setScore: tieBreakerSet
       } as MatchState;
   
-      expect(formatGameScore(matchState)).toBe('"7 - 5"');
+      expect(formatGameScore(matchState)).toBe('7 - 5');
     });
   })
   
