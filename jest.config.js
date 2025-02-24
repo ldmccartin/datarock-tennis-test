@@ -1,15 +1,15 @@
-import { createDefaultPreset } from 'ts-jest';
+import { createDefaultPreset } from "ts-jest";
 
 const customPreset = createDefaultPreset({
-  extensionsToTreatAsEsm: ['.ts'],
-  useESM: true, // Enables ESM support
+  extensionsToTreatAsEsm: [".ts"],
+  useESM: true,
 });
 
 export default {
-  ...customPreset,  // Spread the generated preset
-  testEnvironment: 'node',
+  ...customPreset,
+  testEnvironment: "node",
   testPathIgnorePatterns: ["./node_modules", "./dist"],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.tsx?$": "ts-jest",
   },
 };
