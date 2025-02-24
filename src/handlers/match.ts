@@ -10,9 +10,9 @@ export const initialiseMatch = (): MatchState => ({
   setScore: { [PLAYERS.PLAYER_1]: 0, [PLAYERS.PLAYER_2]: 0 },
 });
 
-const initialiseGame = () =>  {
-return { [PLAYERS.PLAYER_1]: 0, [PLAYERS.PLAYER_2]: 0 };
-}
+const initialiseGame = () => {
+  return { [PLAYERS.PLAYER_1]: 0, [PLAYERS.PLAYER_2]: 0 };
+};
 
 export const pointWonBy = (match: MatchState, player: Player): MatchState => {
   if (match.winner) {
@@ -25,14 +25,14 @@ export const pointWonBy = (match: MatchState, player: Player): MatchState => {
     return { ...match, gameScore: newGameScore };
   }
 
-  const newSetScore = { ...match.setScore, [player]: match.setScore[player] + 1}
+  const newSetScore = { ...match.setScore, [player]: match.setScore[player] + 1 };
   const newGame = { gameScore: initialiseGame(), setScore: newSetScore };
 
   if (!isSetWinningPoint(newGame)) {
-    return newGame
+    return newGame;
   }
 
-  return {...newGame, winner: player};
+  return { ...newGame, winner: player };
 };
 
 export const getCurrentScore = (match: MatchState) => {
@@ -42,7 +42,7 @@ export const getCurrentScore = (match: MatchState) => {
   
   if (player1Score === 0 && player2Score === 0) {
     return `"${formatSetScore(match)}"`;
-  }
+  };
 
   return `"${formatSetScore(match)}, ${formatGameScore(match)}"`;
-}
+};

@@ -11,7 +11,7 @@ export function main() {
     console.log(getCurrentScore(match));
   }
 
-  console.log(match.winner, 'wins!')
+  console.log(match.winner, 'wins!');
 }
 
 main();
