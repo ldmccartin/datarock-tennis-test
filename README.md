@@ -11,7 +11,7 @@ run the following commands in the command line from the project root
 run the following command in the command line from the project root
 - npm run test
 
-### Random example match
+## Random example match
 
 run the following command in the command line from the project root
 - npm run start
