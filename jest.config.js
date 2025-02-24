@@ -8,6 +8,7 @@ const customPreset = createDefaultPreset({
 export default {
   ...customPreset,  // Spread the generated preset
   testEnvironment: 'node',
+  testPathIgnorePatterns: ["./node_modules", "./dist"],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
