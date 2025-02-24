@@ -20,3 +20,7 @@ export const isSetWinningPoint = ({ setScore }: MatchState) => {
 export const formatSetScore = ({ setScore }: MatchState) => {
   return `${setScore[PLAYERS.PLAYER_1]} - ${setScore[PLAYERS.PLAYER_2]}`;
 }
+
+export const isTieBreaker = ({ setScore }: MatchState) => {
+  return setScore[PLAYERS.PLAYER_1] === 6 && setScore[PLAYERS.PLAYER_2] === 6;
+}

@@ -1,4 +1,4 @@
-import { isGameWinningPoint, formatGameScore } from "../helpers/game.helper";
+import { isGameWinningPoint, formatGameScore,  } from "../helpers/game.helper";
 import { isSetWinningPoint, formatSetScore } from "../helpers/set.helper";
 import { PLAYERS } from "../constants/player.constant";
 
@@ -37,8 +37,10 @@ export const pointWonBy = (match: MatchState, player: Player): MatchState => {
 
 export const getCurrentScore = (match: MatchState) => {
   const { gameScore } = match;
+  const player1Score = gameScore[PLAYERS.PLAYER_1];
+  const player2Score = gameScore[PLAYERS.PLAYER_2];
   
-  if (gameScore[PLAYERS.PLAYER_1] === 0 && gameScore[PLAYERS.PLAYER_2] === 0) {
+  if (player1Score === 0 && player2Score === 0) {
     return `"${formatSetScore(match)}"`;
   }
 

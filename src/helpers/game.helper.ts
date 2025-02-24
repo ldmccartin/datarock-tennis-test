@@ -2,8 +2,10 @@ import { getGameScoreAsDeuceOrAdvantage, getPlayerScoreAsTennisValue } from "./s
 
 import { PLAYERS } from "../constants/player.constant";
 import type { MatchState } from "../types/match.type";
+import { isTieBreaker } from "./set.helper";
 
-export const isGameWinningPoint = ({ gameScore }: MatchState) => {
+export const isGameWinningPoint = (match: MatchState) => {
+  const { gameScore } = match;
   const player1Score = gameScore[PLAYERS.PLAYER_1];
   const player2Score = gameScore[PLAYERS.PLAYER_2];
 
@@ -12,10 +14,15 @@ export const isGameWinningPoint = ({ gameScore }: MatchState) => {
   }
 
   const differenceTwoPointsOrGreater = Math.abs(player1Score - player2Score) >= 2;
-  if (differenceTwoPointsOrGreater) {
+
+  if (!isTieBreaker(match) && differenceTwoPointsOrGreater) {
     return true;
   }
-  
+
+  if ((player1Score >= 7 || player2Score >= 7) && differenceTwoPointsOrGreater) {
+    return true;
+  }
+
   return false;
 }
 
@@ -23,6 +30,10 @@ export const formatGameScore = (match: MatchState) => {
   const { gameScore } = match;
   const player1Score = gameScore[PLAYERS.PLAYER_1];
   const player2Score = gameScore[PLAYERS.PLAYER_2];
+  
+  if (isTieBreaker(match)) {
+    return `${player1Score} - ${player2Score}`;
+  }
 
   if (player1Score >= 3 && player2Score >= 3) {
     return getGameScoreAsDeuceOrAdvantage(match);

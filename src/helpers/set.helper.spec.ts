@@ -1,4 +1,4 @@
-import {  isSetWinningPoint } from "./set.helper";
+import { isSetWinningPoint, isTieBreaker } from "./set.helper";
 import { PLAYERS } from "../constants/player.constant";
 
 import type { MatchState } from "../types/match.type";
@@ -25,3 +25,20 @@ describe("isSetWinningPoint", () => {
   });
 });
 
+describe("isTieBreaker", () => {
+  it("should return true when both players have a set score of 6", () => {
+    const matchState = {
+      setScore: { [PLAYERS.PLAYER_1]: 6, [PLAYERS.PLAYER_2]: 6 }
+    } as MatchState;
+
+    expect(isTieBreaker(matchState)).toBe(true);
+  });
+
+  it("should return false when both players DO NOT have a set score of 6", () => {
+    const matchState = {
+      setScore: { [PLAYERS.PLAYER_1]: 5, [PLAYERS.PLAYER_2]: 6 }
+    } as MatchState;
+
+    expect(isTieBreaker(matchState)).toBe(false);
+  });
+});
